@@ -113,13 +113,14 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
             console.debug("Human load Complete. ", self.human.skins.length, " skins, " + self.human.mesh.geometry.morphTargets.length + " morphtargets, " + self.human.bodyPartOpacity().length + ' bodyparts');
 
             self.setHumanDefaults()
+            self.setModifierDefaults()
 
             self.gui = new GUI(self)
 
             // load targets last as it's slow
             // (it loads a ~150mb bin files with targets)
             self.human.loadTargets(`${self.resources.baseUrl}targets/${self.resources.targets}`).then(() => {
-                self.setModifierDefaults()
+                // self.setModifierDefaults()
 
                 self.nanobar.go(90)
 
