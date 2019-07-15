@@ -140,7 +140,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         this.human.setPose(randomPose)
 
         // add some default clothes
-        this.human.proxies.toggleProxy('F_Dress_1',true)
+        this.human.proxies.toggleProxy('F_Dress_01',true)
         this.human.proxies.toggleProxy('eyebrow001',true)
         this.human.proxies.toggleProxy('Eyelashes01',true)
         var randomHair = 'Braid01'
