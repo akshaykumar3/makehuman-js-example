@@ -134,7 +134,9 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
 
     App.prototype.setHumanDefaults = function(){
         // pose them in a random pose
-        var randomPose = _.sample(['standing01', 'standing02', 'standing03', 'standing04', 'standing05'])
+        // var randomPose = _.sample(['standing01', 'standing02', 'standing03', 'standing04', 'standing05'])
+        var randomPose = 'standing02'
+        console.log(randomPose)
         this.human.setPose(randomPose)
 
         // add some default clothes
@@ -156,6 +158,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         // set some modifier buttons
         var macroControllers = this.gui.gui.__folders.Modifiers.__folders["Macro modelling"].__folders.Macro.__controllers
         macroControllers.find(c=>c.property=="Gender").setValue(0)
+        macroControllers.find(c=>c.property=="Muscle").setValue(0.25)
         macroControllers.find(c=>c.property=="Proportions").setValue(1)
     }
 
@@ -385,8 +388,9 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         var skinNames = this.app.resources.skins
 
         this.skinConfig = {
-            Skin: skinNames[0]
+            Skin: skinNames[12]
         };
+        console.log(this.skinConfig)
         this.gui.remember(this.skinConfig);
 
         this.gui.add(self.skinConfig, 'Skin', skinNames).onChange(function(skin) {
