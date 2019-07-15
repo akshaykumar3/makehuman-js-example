@@ -160,6 +160,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         // set some modifier buttons
         var macroControllers = this.gui.gui.__folders.Modifiers.__folders["Macro modelling"].__folders.Macro.__controllers
         macroControllers.find(c=>c.property=="Gender").setValue(0)
+        macroControllers.find(c=>c.property=="African").setValue(0)
         macroControllers.find(c=>c.property=="Muscle").setValue(0.25)
         macroControllers.find(c=>c.property=="Proportions").setValue(1)
     }
