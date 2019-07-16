@@ -41,20 +41,6 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
 
     App.prototype.init = function init() {
         self = this;
-        // Default gender as male.
-        if (null == gender) gender = 1;
-        // Default weight for male = 75.
-        if (null == weight && 1 == gender) weight = 75;
-        // Default weight for female = 65.
-        else if (null == weight && 0 == gender) weight = 65;
-        // Default height for male = 183
-        if (height == weight && 1 == gender) height = 183;
-        // Default height for female = 167
-        else if (height == weight && 0 == gender) height = 167;
-
-        console.log("gender = "+ gender);
-        console.log("weight = "+ weight);
-        console.log("height = "+ height);
 
         this.container = document.getElementById('container');
         if (!this.container)
@@ -126,15 +112,14 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
             self.nanobar.go(50);
             console.debug("Human load Complete. ", self.human.skins.length, " skins, " + self.human.mesh.geometry.morphTargets.length + " morphtargets, " + self.human.bodyPartOpacity().length + ' bodyparts');
 
-            self.setHumanDefaults(gender)
+            self.setHumanDefaults()
 
             self.gui = new GUI(self)
-            self.setModifierDefaults(gender, weight, height)
 
             // load targets last as it's slow
             // (it loads a ~150mb bin files with targets)
             self.human.loadTargets(`${self.resources.baseUrl}targets/${self.resources.targets}`).then(() => {
-                // self.setModifierDefaults()
+                self.setModifierDefaults()
 
                 self.nanobar.go(90)
 
@@ -147,52 +132,30 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         });
     }
 
-    App.prototype.setHumanDefaults = function(gender){
+    App.prototype.setHumanDefaults = function(){
         // pose them in a random pose
-        // var randomPose = _.sample(['standing01', 'standing02', 'standing03', 'standing04', 'standing05'])
-        var randomPose = 'standing02'
-        console.log(randomPose)
+        var randomPose = _.sample(['standing01', 'standing02', 'standing03', 'standing04', 'standing05'])
         this.human.setPose(randomPose)
 
         // add some default clothes
-        var dress = 0 == gender ? 'F_Dress_01' : 'male_casualsuit04'
-        this.human.proxies.toggleProxy(dress,true)
-        this.human.proxies.toggleProxy('eyebrow001',true)
-        this.human.proxies.toggleProxy('Eyelashes01',true)
-        var hair = = 0 == gender ? 'Braid01' : 'short02'
-        this.human.proxies.toggleProxy(hair,true)
+        this.human.proxies.toggleProxy('female_sportsuit01',true)
+        this.human.proxies.toggleProxy('eyebrow010',true)
+        var randomHair = _.sample(['Braid01', 'blondwithheadband', 'ponytail01', 'bob02'])
+        this.human.proxies.toggleProxy(randomHair,true)
         this.human.proxies.toggleProxy('data/proxies/eyes/Low-Poly/Low-Poly.json#brown',true)
 
         // lets set the color to be a mixed/average skin color
         this.human.mesh.material.materials[0].color = new THREE.Color(0.6451834425332652, 0.541358126188251, 0.46583313890034395)
     }
 
-    App.prototype.getHeightValue = function(height){
-        if (137 >= height) return 0;
-        else if (198 <= height) return 1;
-        return (height - 137) * 0.0164;
-    }
-
-    App.prototype.getWeightValue = function(weight){
-        if (55 >= weight) return 0;
-        else if (105 <= weight) return 1;
-        return (weight - 55) * 0.02;
-    }
-
-    App.prototype.setModifierDefaults = function (gender, weight, height) {
+    App.prototype.setModifierDefaults = function () {
         // this.human.modifiers.children['macrodetails/Gender'].setValue(0)
         // this.human.modifiers.children['macrodetails-proportions/BodyProportions'].setValue(1)
         // this.human.modifiers.children['macrodetails-height/Height'].setValue(0.5)
 
         // set some modifier buttons
-        heightvalue = getHeightValue(height)
-        weightvalue = getWeightValue(weight)
         var macroControllers = this.gui.gui.__folders.Modifiers.__folders["Macro modelling"].__folders.Macro.__controllers
-        macroControllers.find(c=>c.property=="Gender").setValue(gender)
-        macroControllers.find(c=>c.property=="Height").setValue(heightvalue)
-        macroControllers.find(c=>c.property=="Weight").setValue(weightvalue)
-        macroControllers.find(c=>c.property=="African").setValue(0)
-        macroControllers.find(c=>c.property=="Muscle").setValue(0.25)
+        macroControllers.find(c=>c.property=="Gender").setValue(0)
         macroControllers.find(c=>c.property=="Proportions").setValue(1)
     }
 
@@ -361,14 +324,14 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
     
     GUI.prototype.setupIOGUI = function () {
         this.downloadObj = function() {
-			// Uses FileSaver.js/1.3.3
-			saveAs(
-				new Blob( [self.human.io.toObj()], {type : 'text/plain;charset=utf-8'} ),
-					'test.obj'
-				);
-			};
+            // Uses FileSaver.js/1.3.3
+            saveAs(
+                new Blob( [self.human.io.toObj()], {type : 'text/plain;charset=utf-8'} ),
+                    'test.obj'
+                );
+            };
         this.gui.add(this, 'downloadObj');
-	}
+    }
 
     GUI.prototype.setupProxyGUI = function () {
         var self = this;
@@ -422,9 +385,8 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         var skinNames = this.app.resources.skins
 
         this.skinConfig = {
-            Skin: skinNames[12]
+            Skin: skinNames[0]
         };
-        console.log(this.skinConfig)
         this.gui.remember(this.skinConfig);
 
         this.gui.add(self.skinConfig, 'Skin', skinNames).onChange(function(skin) {
