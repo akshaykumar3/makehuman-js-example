@@ -43,15 +43,15 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         self = this;
 
         // Default gender as male.
-        if (null == gender) gender = 1;
-        // Default weight for male = 75.
-        if (null == weight && 1 == gender) weight = 75;
-        // Default weight for female = 65.
-        else if (null == weight && 0 == gender) weight = 65;
-        // Default height for male = 183
-        if (null == height && 1 == gender) height = 183;
-        // Default height for female = 167
-        else if (null == height && 0 == gender) height = 167;
+        // if (null == gender) gender = 1;
+        // // Default weight for male = 75.
+        // if (null == weight && 1 == gender) weight = 75;
+        // // Default weight for female = 65.
+        // else if (null == weight && 0 == gender) weight = 65;
+        // // Default height for male = 183
+        // if (null == height && 1 == gender) height = 183;
+        // // Default height for female = 167
+        // else if (null == height && 0 == gender) height = 167;
 
         console.log("init gender = "+ gender);
         console.log("init weight = "+ weight);
