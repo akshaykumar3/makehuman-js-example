@@ -39,8 +39,12 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         this.modeling_sliders = modeling_sliders
     }
 
-    App.prototype.init = function init() {
+    App.prototype.init = function init(gender, height, weight) {
         self = this;
+
+        console.log("input gender = "+ gender);
+        console.log("input weight = "+ weight);
+        console.log("input height = "+ height);
 
         this.container = document.getElementById('container');
         if (!this.container)

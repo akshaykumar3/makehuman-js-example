@@ -61,9 +61,8 @@
     .then(() => {
         // start the app
         resources.baseUrl = "node_modules/makehuman-data/public/data/"
-        console.log(gender)
         app = new App(resources, modeling_sliders)
-        app.init()
+        app.init(gender, height, weight)
         app.animate()
     })
 
