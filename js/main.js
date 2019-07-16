@@ -191,8 +191,8 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         // console.log("setModifierDefaults height = "+ height);
 
         // set some modifier buttons
-        var heightvalue = getHeightValue(height)
-        var weightvalue = getWeightValue(weight)
+        var heightvalue = self.getHeightValue(height)
+        var weightvalue = self.getWeightValue(weight)
         // var heightvalue = 0.5
         // var weightvalue = 0.5
         console.log("setModifierDefaults heightvalue = "+ heightvalue);
