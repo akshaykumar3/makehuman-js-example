@@ -39,7 +39,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         this.modeling_sliders = modeling_sliders
     }
 
-    App.prototype.init = function init(gender, weight, height) {
+    App.prototype.init = function init() {
         self = this;
         // Default gender as male.
         if (null == gender) gender = 1;
