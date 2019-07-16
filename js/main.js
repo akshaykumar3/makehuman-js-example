@@ -193,10 +193,10 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         // console.log("setModifierDefaults height = "+ height);
 
         // set some modifier buttons
-        // heightvalue = getHeightValue(height)
-        // weightvalue = getWeightValue(weight)
-        heightvalue = 0.5
-        weightvalue = 0.5
+        // var heightvalue = getHeightValue(height)
+        // var weightvalue = getWeightValue(weight)
+        var heightvalue = 0.5
+        var weightvalue = 0.5
         console.log("setModifierDefaults heightvalue = "+ heightvalue);
         console.log("setModifierDefaults weightvalue = "+ weightvalue);
         var macroControllers = this.gui.gui.__folders.Modifiers.__folders["Macro modelling"].__folders.Macro.__controllers
