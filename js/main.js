@@ -128,7 +128,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
             console.debug("Human load Complete. ", self.human.skins.length, " skins, " + self.human.mesh.geometry.morphTargets.length + " morphtargets, " + self.human.bodyPartOpacity().length + ' bodyparts');
 
             console.log(1);
-            self.setHumanDefaults(gender)
+            self.setHumanDefaults()
             console.log(2);
 
             self.gui = new GUI(self)
@@ -150,7 +150,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         });
     }
 
-    App.prototype.setHumanDefaults = function(gender){
+    App.prototype.setHumanDefaults = function(){
         // var randomPose = _.sample(['standing01', 'standing02', 'standing03', 'standing04', 'standing05'])
         var randomPose = 'standing02'
         console.log(randomPose)
