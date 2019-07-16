@@ -163,7 +163,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         this.human.proxies.toggleProxy(dress,true)
         this.human.proxies.toggleProxy('eyebrow001',true)
         this.human.proxies.toggleProxy('Eyelashes01',true)
-        var hair = = 0 == gender ? 'Braid01' : 'short02'
+        var hair = 0 == gender ? 'Braid01' : 'short02'
         this.human.proxies.toggleProxy(hair,true)
         this.human.proxies.toggleProxy('data/proxies/eyes/Low-Poly/Low-Poly.json#brown',true)
 
@@ -188,9 +188,9 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         // this.human.modifiers.children['macrodetails-proportions/BodyProportions'].setValue(1)
         // this.human.modifiers.children['macrodetails-height/Height'].setValue(0.5)
 
-        console.log("setModifierDefaults gender = "+ gender);
-        console.log("setModifierDefaults weight = "+ weight);
-        console.log("setModifierDefaults height = "+ height);
+        // console.log("setModifierDefaults gender = "+ gender);
+        // console.log("setModifierDefaults weight = "+ weight);
+        // console.log("setModifierDefaults height = "+ height);
 
         // set some modifier buttons
         // heightvalue = getHeightValue(height)
