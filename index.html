@@ -28,8 +28,9 @@
     // Get value from URL.
     var url_string = window.location.href; //window.location.href
     var url = new URL(url_string);
-    var age = url.searchParams.get("age");
-    console.log("age = "+ age)
+    var gender = url.searchParams.get("gender");
+    var weight = url.searchParams.get("weight");
+    var height = url.searchParams.get("height");
 
     var app
     // load some json data first
@@ -57,8 +58,11 @@
     .then(() => {
         // start the app
         resources.baseUrl = "node_modules/makehuman-data/public/data/"
+        console.log("input gender = "+ gender);
+        console.log("input weight = "+ weight);
+        console.log("input height = "+ height);
         app = new App(resources, modeling_sliders)
-        app.init()
+        app.init(gender, weight, height)
         app.animate()
     })
 
