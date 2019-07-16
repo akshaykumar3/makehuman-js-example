@@ -127,10 +127,12 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
             self.nanobar.go(50);
             console.debug("Human load Complete. ", self.human.skins.length, " skins, " + self.human.mesh.geometry.morphTargets.length + " morphtargets, " + self.human.bodyPartOpacity().length + ' bodyparts');
 
+            console.log(1);
             self.setHumanDefaults(gender)
-            self.setModifierDefaults(gender, weight, height)
+            console.log(2);
 
             self.gui = new GUI(self)
+            self.setModifierDefaults()
 
             // load targets last as it's slow
             // (it loads a ~150mb bin files with targets)
@@ -181,7 +183,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
     //     return (weight - 55) * 0.02;
     // }
 
-    App.prototype.setModifierDefaults = function (gender, weight, height) {
+    App.prototype.setModifierDefaults = function () {
         // this.human.modifiers.children['macrodetails/Gender'].setValue(0)
         // this.human.modifiers.children['macrodetails-proportions/BodyProportions'].setValue(1)
         // this.human.modifiers.children['macrodetails-height/Height'].setValue(0.5)
@@ -198,7 +200,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         console.log("setModifierDefaults heightvalue = "+ heightvalue);
         console.log("setModifierDefaults weightvalue = "+ weightvalue);
         var macroControllers = this.gui.gui.__folders.Modifiers.__folders["Macro modelling"].__folders.Macro.__controllers
-        macroControllers.find(c=>c.property=="Gender").setValue(gender)
+        macroControllers.find(c=>c.property=="Gender").setValue(1)
         macroControllers.find(c=>c.property=="Height").setValue(heightvalue)
         macroControllers.find(c=>c.property=="Weight").setValue(weightvalue)
         macroControllers.find(c=>c.property=="African").setValue(0)
