@@ -148,7 +148,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         });
     }
 
-    App.prototype.setHumanDefaults = function(genders){
+    App.prototype.setHumanDefaults = function(gender){
         // var randomPose = _.sample(['standing01', 'standing02', 'standing03', 'standing04', 'standing05'])
         var randomPose = 'standing02'
         console.log(randomPose)
