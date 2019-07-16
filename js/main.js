@@ -130,7 +130,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
             self.setHumanDefaults(gender)
 
             self.gui = new GUI(self)
-            self.setModifierDefaults()
+            self.setModifierDefaults(gender, height, weight)
 
             // load targets last as it's slow
             // (it loads a ~150mb bin files with targets)
@@ -169,19 +169,19 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         this.human.mesh.material.materials[0].color = new THREE.Color(0.6451834425332652, 0.541358126188251, 0.46583313890034395)
     }
 
-    // App.prototype.getHeightValue = function(height){
-    //     if (137 >= height) return 0;
-    //     else if (198 <= height) return 1;
-    //     return (height - 137) * 0.0164;
-    // }
+    App.prototype.getHeightValue = function(height){
+        if (137 >= height) return 0;
+        else if (198 <= height) return 1;
+        return (height - 137) * 0.0164;
+    }
 
-    // App.prototype.getWeightValue = function(weight){
-    //     if (55 >= weight) return 0;
-    //     else if (105 <= weight) return 1;
-    //     return (weight - 55) * 0.02;
-    // }
+    App.prototype.getWeightValue = function(weight){
+        if (55 >= weight) return 0;
+        else if (105 <= weight) return 1;
+        return (weight - 55) * 0.02;
+    }
 
-    App.prototype.setModifierDefaults = function () {
+    App.prototype.setModifierDefaults = function (gender, height, weight) {
         // this.human.modifiers.children['macrodetails/Gender'].setValue(0)
         // this.human.modifiers.children['macrodetails-proportions/BodyProportions'].setValue(1)
         // this.human.modifiers.children['macrodetails-height/Height'].setValue(0.5)
@@ -191,10 +191,10 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         // console.log("setModifierDefaults height = "+ height);
 
         // set some modifier buttons
-        // var heightvalue = getHeightValue(height)
-        // var weightvalue = getWeightValue(weight)
-        var heightvalue = 0.5
-        var weightvalue = 0.5
+        var heightvalue = getHeightValue(height)
+        var weightvalue = getWeightValue(weight)
+        // var heightvalue = 0.5
+        // var weightvalue = 0.5
         console.log("setModifierDefaults heightvalue = "+ heightvalue);
         console.log("setModifierDefaults weightvalue = "+ weightvalue);
         var macroControllers = this.gui.gui.__folders.Modifiers.__folders["Macro modelling"].__folders.Macro.__controllers
