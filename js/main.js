@@ -106,7 +106,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
 
         // STATS
         this.stats = new Stats();
-        this.stats.showPanel(0);
+        // this.stats.showPanel(0);
         document.body.appendChild(this.stats.domElement);
 
         // events
@@ -251,7 +251,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
             // load: JSON
         });
 
-        dat.GUI.toggleHide();
+        // dat.GUI.toggleHide();
 
         this.setupModifiersGUI();
         this.setupPoseGUI();
