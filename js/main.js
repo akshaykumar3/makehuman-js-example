@@ -106,9 +106,8 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
 
         // STATS
         this.stats = new Stats();
-        document.body.appendChild(this.stats.domElement);
-
         this.stats.showPanel(0);
+        document.body.appendChild(this.stats.domElement);
 
         // events
         window.addEventListener('resize', this.onWindowResize.bind(this), false);
