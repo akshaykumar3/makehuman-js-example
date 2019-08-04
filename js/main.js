@@ -105,8 +105,10 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         this.nanobar = new Nanobar({id: 'progress-bar'});
 
         // STATS
-        // this.stats = new Stats();
-        // document.body.appendChild(this.stats.domElement);
+        this.stats = new Stats();
+        document.body.appendChild(this.stats.domElement);
+
+        this.stats.showPanel(0);
 
         // events
         window.addEventListener('resize', this.onWindowResize.bind(this), false);
@@ -225,7 +227,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
 
     App.prototype.render = function() {
         var delta = 0.75 * this.clock.getDelta();
-        // this.stats.update();
+        this.stats.update();
         if (this.renderer && this.scene && this.camera && this.human) {
             // you need the before and after call to update the body
             this.human.onBeforeRender()
