@@ -251,7 +251,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
             // load: JSON
         });
 
-        // dat.GUI.toggleHide();
+        dat.GUI.toggleHide();
 
         this.setupModifiersGUI();
         this.setupPoseGUI();
