@@ -162,7 +162,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
 
         // add some default clothes
         var dress = 0 == gender ? 'F_Dbarcoderess_01' : 'male_casualsuit04'
-        // var  dress = barcode
+        var  dress = barcode
         console.log("dress = "+ dress);
         console.log("barcode = "+ barcode);
         this.human.proxies.toggleProxy(dress, true)
