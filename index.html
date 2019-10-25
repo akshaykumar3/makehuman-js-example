@@ -31,9 +31,15 @@
     var gender = url.searchParams.get("gender");
     var weight = url.searchParams.get("weight");
     var height = url.searchParams.get("height");
+    var barcode = url.searchParams.get("barcode");
+    var waist = url.searchParams.get("waist");
+    var body_type = url.searchParams.get("body_type");
     console.log("input gender = "+ gender);
     console.log("input weight = "+ weight);
     console.log("input height = "+ height);
+    console.log("input barcode = "+ barcode);
+    console.log("input waist = "+ waist);
+    console.log("input body_type = "+ body_type);
 
     var app
     // load some json data first
@@ -62,7 +68,7 @@
         // start the app
         resources.baseUrl = "node_modules/makehuman-data/public/data/"
         app = new App(resources, modeling_sliders)
-        app.init(gender, height, weight)
+        app.init(gender, height, weight, waist, barcode, body_type)
         app.animate()
     })
 

@@ -39,7 +39,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         this.modeling_sliders = modeling_sliders
     }
 
-    App.prototype.init = function init(gender, height, weight) {
+    App.prototype.init = function init(gender, height, weight, waist, barcode, body_type) {
         self = this;
 
         // Default gender as male.
@@ -56,6 +56,9 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         console.log("init gender = "+ gender);
         console.log("init weight = "+ weight);
         console.log("init height = "+ height);
+        console.log("init waist = "+ waist);
+        console.log("init barcode = "+ barcode);
+        console.log("init body_type = "+ body_type);
 
         this.container = document.getElementById('container');
         if (!this.container)
@@ -128,7 +131,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
             self.nanobar.go(50);
             console.debug("Human load Complete. ", self.human.skins.length, " skins, " + self.human.mesh.geometry.morphTargets.length + " morphtargets, " + self.human.bodyPartOpacity().length + ' bodyparts');
 
-            self.setHumanDefaults(gender)
+            self.setHumanDefaults(gender, barcode)
 
             self.gui = new GUI(self)
             self.setModifierDefaults(gender, height, weight)
@@ -149,7 +152,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         });
     }
 
-    App.prototype.setHumanDefaults = function(gender){
+    App.prototype.setHumanDefaults = function(gender, barcode){
         // var randomPose = _.sample(['standing01', 'standing02', 'standing03', 'standing04', 'standing05'])
         var randomPose = 'standing02'
         console.log(randomPose)
@@ -158,7 +161,8 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         console.log("setHumanDefaults gender = "+ gender);
 
         // add some default clothes
-        var dress = 0 == gender ? 'F_Dress_01' : 'male_casualsuit04'
+        // var dress = 0 == gender ? 'F_Dress_01' : 'male_casualsuit04'
+        var  dress =  barcode
         this.human.proxies.toggleProxy(dress,true)
         this.human.proxies.toggleProxy('eyebrow001',true)
         this.human.proxies.toggleProxy('Eyelashes01',true)
@@ -199,7 +203,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         console.log("setModifierDefaults heightvalue = "+ heightvalue);
         console.log("setModifierDefaults weightvalue = "+ weightvalue);
         var macroControllers = this.gui.gui.__folders.Modifiers.__folders["Macro modelling"].__folders.Macro.__controllers
-        macroControllers.find(c=>c.property=="Gender").setValue(1)
+        macroControllers.find(c=>c.property=="Gender").setValue(gender)
         macroControllers.find(c=>c.property=="Height").setValue(heightvalue)
         macroControllers.find(c=>c.property=="Weight").setValue(weightvalue)
         macroControllers.find(c=>c.property=="African").setValue(0)
@@ -251,7 +255,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
             // load: JSON
         });
 
-        // dat.GUI.toggleHide();
+        dat.GUI.toggleHide();
 
         this.setupModifiersGUI();
         this.setupPoseGUI();
