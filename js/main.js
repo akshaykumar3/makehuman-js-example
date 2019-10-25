@@ -165,7 +165,7 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
         // var  dress = barcode
         console.log("dress = "+ dress);
         console.log("barcode = "+ barcode);
-        this.human.proxies.toggleProxy(barcode, true)
+        this.human.proxies.toggleProxy(dress, true)
         this.human.proxies.toggleProxy('eyebrow001',true)
         this.human.proxies.toggleProxy('Eyelashes01',true)
         var hair = 0 == gender ? 'Braid01' : 'short02'
@@ -257,7 +257,8 @@ var App = function(makehuman, dat, _, THREE, Detector, Nanobar, Stats) {
             // load: JSON
         });
 
-        dat.GUI.toggleHide();
+        // This removes the side bar
+        // dat.GUI.toggleHide();
 
         this.setupModifiersGUI();
         this.setupPoseGUI();
